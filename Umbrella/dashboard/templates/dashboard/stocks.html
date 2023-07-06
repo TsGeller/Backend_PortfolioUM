@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, >
+    initial-scale=1.0">
+    <title>Stock available</title>
+</head>
+
+<body>
+    <h1>Stock</h1>
+    <h2>List of stock</h2>
+    {% if stocks %}
+    <ul>
+        {% for stock in stocks %}
+        <li>{{ stock.ticker }}</li>
+        <li>{{ stock.name_stock }}</li>
+        <li>{{ stock.type_stock }}</li>
+        <li>{{ stock.currency }}</li>
+        <br>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p><strong>No stock!</>
+            strong></p>
+    {% endif %}
+</body>
+
+</html>

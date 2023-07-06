@@ -126,5 +126,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CRISPY FORM CONFIGURATION
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# AUHT CONFIGURATION 
-AUTH_USER_MODEL = 'dashboard.Holder'
+
