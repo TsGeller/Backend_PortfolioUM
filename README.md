@@ -5,7 +5,7 @@ This is a dashboard for portfolio analysis. It is a work in progress.
 ![Alt text](DatabaseModel.PNG?raw=true "DatabaseModel")
 
 Source: DatabaseModel.PNG
-## install instructions
+## Requirements
 1. install python 
 2. install Django : ´´´python -m pip install django```
 ## Database instruction 
