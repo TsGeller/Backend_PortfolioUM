@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap
+    .min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.
+    js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/po
+    pper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.m
+    in.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <h1> Add a cashflow entry</h1>
+    <form action="{% url 'dashboard:addCashflow' %}" method="post">
+        {% csrf_token %}
+        {{ formCashflow }}
+        <button type="submit">Create</button>
+    </form>
     <h1> Add a Stock </h1>
     <form action="{% url 'dashboard:addstock' %}" method="post">
         {% csrf_token %}
@@ -16,5 +30,6 @@
     <a href="{% url 'dashboard:stocks' %}" class="btn btn-primary" >Stocks page</a>
     <h1> Add  movement on the wallet</h1>
     <h2> Add a quantity of stock </h2>
+    <a href="{% url 'dashboard:index' %}" class="btn btn-primary" >Home</a>
 </body>
 </html>
