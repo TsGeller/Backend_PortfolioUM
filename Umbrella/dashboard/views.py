@@ -9,9 +9,12 @@ from .model.Service import Service
 # Create your views here.
 def index (request):
     hold = "Umbrella"
-    service = Service(hold)
-    context = {         
-        'wallet':  Holding.objects.filter(wallet_id = 1),
+    service = Service(hold) 
+    print("print ici")
+    print(service.getWalletDto())  
+    context = {  
+        'wallet':  Holding.objects.filter(wallet_id = 1),       
+        ##'wallet':  service.walletDto.getStockList(), 
         'cashflows': WalletCashflow.objects.all()   
     } 
     return render(request, 'dashboard/index.html', context) 
@@ -80,12 +83,7 @@ def addTransaction(request):
         wallet_id = transactionForm.cleaned_data['wallet_id'],
         date = transactionForm.cleaned_data['date'] 
         )
-        context = {
-        'form': StockForm,
-        'formCashflow': CashflowForm, 
-        'formTransaction': ActorCashflow,
-        'HoldingForm': HoldingForm,
-    }
+        
     context = {
         'form': StockForm,
         'formCashflow': CashflowForm, 

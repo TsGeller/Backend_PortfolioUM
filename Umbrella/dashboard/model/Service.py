@@ -1,31 +1,36 @@
-from ..models import Holding, Portfolio
+
+from .WalletDto import WalletDto
+from ..models import Holding, Portfolio, WalletCashflow
 import pandas as pd
 
 class Service:
-    ##walletDto = WalletDto("Umbrella", [], [], [])
+    walletDto = WalletDto()
     
     def __init__(self,hold):
-        portfolio = Portfolio.objects.get(name = hold)
-        cashflowList = []
-        print(portfolio)
-        queryset = Holding.objects.filter(wallet_id = portfolio)
-        nameWallet = "Umbrella"
-        print("quoicoubeh")
+        portfolio = Portfolio.objects.get(name = hold)        
+        querysetstocklist = Holding.objects.filter(wallet_id = portfolio) 
+        querysetWalletCashflow = WalletCashflow.objects.filter(wallet_id = portfolio) 
         ##########
-        print("queryset panda")
-        pd.set_option('display.max_colwidth', None)
-        data = list(queryset.values())
-        df = pd.DataFrame(data)
-        print(df)
-        print("queryset panda")
+        print("queryset for stockList")        
+        data = list(querysetstocklist.values())
+        stocklist = pd.DataFrame(data)
+               
+        ########
+        ##########
+        print("queryset for Cashflow List")        
+        data = list(querysetWalletCashflow.values())
+        WalletCashflows = pd.DataFrame(data)
+               
         ######## 
-        print(hold) 
-        holding  = []      
-        for hold in queryset:
-            holding.append(hold)
-        print(holding)
-        df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
-        print(df)
+        
+        self.walletDto.name = hold
+        self.walletDto.cashflowList = WalletCashflows
+        self.walletDto.stockList = stocklist
+    def getWalletDto(self):
+        return self.walletDto
+    ##make tostring 
+    def __str__(self):
+        return f"WalletDto: {self.walletDto}"
          
         
     
