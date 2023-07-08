@@ -1,0 +1,33 @@
+[
+    {
+      "ticker": "AAPL",
+      "name_stock": "Apple Inc.",
+      "type_stock": "Technologie",
+      "currency": "USD"
+    },
+    {
+      "ticker": "GOOG",
+      "name_stock": "Alphabet Inc.",
+      "type_stock": "Technologie",
+      "currency": "USD"
+    },
+    {
+      "ticker": "MSFT",
+      "name_stock": "Microsoft Corporation",
+      "type_stock": "Technologie",
+      "currency": "USD"
+    },
+    {
+      "ticker": "AMZN",
+      "name_stock": "Amazon.com Inc.",
+      "type_stock": "Commerce électronique",
+      "currency": "USD"
+    },
+    {
+      "ticker": "TSLA",
+      "name_stock": "Tesla Inc.",
+      "type_stock": "Automobile",
+      "currency": "USD"
+    }
+  ]
+  

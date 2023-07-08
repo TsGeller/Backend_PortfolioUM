@@ -8,7 +8,7 @@ class Holder(models.Model):
     email = models.CharField(max_length=200)
 
     def __str__(self):
-        return f"ID: {self.id}, Nom d'utilisateur: {self.user_name}, Email: {self.email}"
+        return f"Nom d'utilisateur: {self.user_name}"
 
 class Portfolio(models.Model):
     id = models.AutoField(primary_key=True)
@@ -17,7 +17,7 @@ class Portfolio(models.Model):
     value_today = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"ID: {self.id}, Nom: {self.name}, Valeur du dernier jour: {self.value_lastDay}, Valeur aujourd'hui: {self.value_today}"
+        return f"Nom: {self.name}"
 
 class Stock(models.Model):
     id = models.AutoField(primary_key=True)

@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "dashboard.apps.DashboardConfig",   
+    #My apps
+    "dashboard.apps.DashboardConfig", 
+    #Third-party app 
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -125,5 +128,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # CRISPY FORM CONFIGURATION
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 

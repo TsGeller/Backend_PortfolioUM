@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Stock , Portfolio , Holder,WalletCashflow
-from .forms import StockForm, CashflowForm
+from .models import Holding, Stock , Portfolio ,WalletCashflow
+from .forms import ActorCashflow, HoldingForm, StockForm, CashflowForm
 from django.urls import reverse 
+
 
 # Create your views here.
 def index (request):
     context = { 
-        'wallet':  Portfolio.objects.get(pk=1),
+        'wallet':  Holding.objects.filter(wallet_id = 1),
         'cashflows': WalletCashflow.objects.all()   
     } 
     return render(request, 'dashboard/index.html', context) 
@@ -29,7 +30,9 @@ def addstock(request):
         )
         context = {
         'form': StockForm,
-        'formCashflow': CashflowForm,  
+        'formCashflow': CashflowForm,
+        'formTransaction': ActorCashflow,  
+        'holdingForm': HoldingForm, 
     }  
 
     return HttpResponseRedirect(reverse('dashboard:stocks'),context)
@@ -37,7 +40,9 @@ def addstock(request):
 def add(request):
     context = {
         'form': StockForm,
-        'formCashflow': CashflowForm,  
+        'formCashflow': CashflowForm, 
+        'formTransaction': ActorCashflow,
+        'holdingForm': HoldingForm, 
     }    
     return render(request, 'dashboard/addSomething.html',context)
 
@@ -53,5 +58,53 @@ def addCashflow(request):
         context = {
         'form': StockForm,
         'formCashflow': CashflowForm,  
+        'formTransaction': ActorCashflow,
+        'holdingForm': HoldingForm,
     } 
     return render(request, 'dashboard/addSomething.html',context)
+
+def addTransaction(request):
+    transactionForm = ActorCashflow(request.POST)
+    if transactionForm.is_valid():
+        ActorCashflow.objects.create(    
+        quantity = transactionForm.cleaned_data['quantity'],  
+        stock_id = transactionForm.cleaned_data['stock_id'], 
+        price = transactionForm.cleaned_data['price'], 
+        conversion_rate = transactionForm.cleaned_data['conversion_rate'],
+        price_eur = transactionForm.cleaned_data['price_eur'],
+        total_amount = transactionForm.cleaned_data['total_amount'],
+        charges = transactionForm.cleaned_data['charges'],
+        wallet_id = transactionForm.cleaned_data['wallet_id'],
+        date = transactionForm.cleaned_data['date'] 
+        )
+        context = {
+        'form': StockForm,
+        'formCashflow': CashflowForm, 
+        'formTransaction': ActorCashflow,
+        'HoldingForm': HoldingForm,
+    }
+    context = {
+        'form': StockForm,
+        'formCashflow': CashflowForm, 
+        'formTransaction': ActorCashflow,
+        'HoldingForm': HoldingForm,
+    }    
+    return render(request, 'dashboard/addSomething.html',context)
+def addhold(request):
+    holdingForm = HoldingForm(request.POST)
+    if holdingForm.is_valid():
+        Holding.objects.create(    
+        sock_id = holdingForm.cleaned_data['sock_id'],  
+        quantity = holdingForm.cleaned_data['quantity'], 
+        wallet_id = holdingForm.cleaned_data['wallet_id'], 
+        )
+    context = {
+        'form': StockForm,
+        'formCashflow': CashflowForm, 
+        'formTransaction': ActorCashflow,
+        'HoldingForm': HoldingForm,
+    }  
+    return render(request, 'dashboard/addSomething.html',context)
+
+def page404(request, exception):
+    return render(request, 'app/404.html')

@@ -10,7 +10,8 @@ js"></script>
 pper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.m
 in.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +20,32 @@ in.js"></script>
 
 <body>
     <h1>Welcome on the Wallet {{ wallet.name }} </h1>
+    <h2>holding</h2>
+    
+    {% if wallet %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Stock id</th>
+                <th>Quantity</th>                
+            </tr>
+        </thead>
+        <tbody>
+            {% for raw in wallet %}
+            <tr>
+                <td>{{ raw.sock_id }}</td>
+                <td>{{ raw.quantity }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p><strong>No holding!</strong></p>    
+    {% endif %}
     <h2>Cashflow Found</h2>
     {% if cashflows %}
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Date</th>
@@ -44,7 +68,8 @@ in.js"></script>
     {% else %}
     <p><strong>No Cashflow Found!</strong></p>
     {% endif %}
-    <a href="{% url 'dashboard:stocks' %}" class="btn btn-primary" >list Stocks</a>
+    
+    <a href="{% url 'dashboard:stocks' %}" class="btn btn-primary">list Stocks</a>
 </body>
 
 </html>

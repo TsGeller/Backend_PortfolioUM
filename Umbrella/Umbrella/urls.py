@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('dashboard/', include('dashboard.urls', namespace='dashboard')),
+    path('', include('dashboard.urls', namespace='dashboard')),
     
 ]
+handler404 = 'dashboard.views.page404'
