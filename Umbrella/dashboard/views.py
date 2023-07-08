@@ -3,11 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Holding, Stock , Portfolio ,WalletCashflow
 from .forms import ActorCashflow, HoldingForm, StockForm, CashflowForm
 from django.urls import reverse 
+from .model.Service import Service
 
 
 # Create your views here.
 def index (request):
-    context = { 
+    hold = "Umbrella"
+    service = Service(hold)
+    context = {         
         'wallet':  Holding.objects.filter(wallet_id = 1),
         'cashflows': WalletCashflow.objects.all()   
     } 
