@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "dashboard.apps.DashboardConfig", 
     #Third-party app 
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

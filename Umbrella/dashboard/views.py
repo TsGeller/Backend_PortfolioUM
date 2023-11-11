@@ -4,13 +4,18 @@ from .models import Holding, Stock , Portfolio ,WalletCashflow
 from .forms import ActorCashflow, HoldingForm, StockForm, CashflowForm
 from django.urls import reverse 
 from .model.Service import Service
+from rest_framework import generics
+from .models import Stock
+from .serializers import StockSerializer
 
-
+class StockListAPI(generics.ListAPIView):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
+    
 # Create your views here.
 def index (request):
     hold = "Umbrella"
-    service = Service(hold) 
-    print("print ici")
+    service = Service(hold)     
     print(service.getWalletDto())  
     context = {  
         'wallet':  Holding.objects.filter(wallet_id = 1),       
