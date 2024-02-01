@@ -6,21 +6,21 @@ from dashboard.models import Holder, Holding, Portfolio, Stock,ActorCashflow, Wa
 from dashboard.serializers import HoldingSerializer, StockSerializer,ActorCashflowSerializer,PortfolioSerializer,HolderSerializer, WalletCashflowSerializer
 
 
-class StockListAPI(generics.ListAPIView):
+class StockReadApiView(generics.ListAPIView):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
-class ActorCashflowListApi(generics.ListAPIView):
+class ActorCashflowReadApiView(generics.ListAPIView):
     queryset = ActorCashflow.objects.all()
     serializer_class = ActorCashflowSerializer
-class HoldingListApi(generics.ListAPIView):
+class HoldingReadApiView(generics.ListAPIView):
     queryset = Holding.objects.all()
     serializer_class = PortfolioSerializer
-class PortfolioListApi(generics.ListAPIView):
+class PortfolioReadApiView(generics.ListAPIView):
     queryset = Portfolio.objects.all()
     serializer_class = PortfolioSerializer
-class HolderListApi(generics.ListAPIView):
+class HolderReadApiView(generics.ListAPIView):
     queryset = Holder.objects.all()
     serializer_class = HolderSerializer
-class WalletCashflowListApi(generics.ListAPIView):
+class WalletCashflowReadApiView(generics.ListAPIView):
     queryset = WalletCashflow.objects.all()
     serializer_class = WalletCashflowSerializer

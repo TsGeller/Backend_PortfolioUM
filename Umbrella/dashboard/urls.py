@@ -1,10 +1,10 @@
 from django.urls import path
 
-from dashboard.CreateAPIView import ActorCashflowCreateApi, HolderCreateApi, HoldingCreateApi, PortfolioCreateApi, WalletCashflowCreateApi
-from dashboard.DeleteApiView import StockDeleteApi, HolderDeleteApi, PortfolioDeleteApi, HoldingDeleteApi, ActorCashflowDeleteApi, WalletCashflowDeleteApi
-from dashboard.UpdateAPIView import HolderUpdateApi, StockUpdateApi, PortfolioUpdateApi, HoldingUpdateApi, ActorCashflowUpdateApi, WalletCashflowUpdateApi
+from .crudModels.CreateAPIView import ActorCashflowCreateApi, HolderCreateApi, HoldingCreateApi, PortfolioCreateApi, WalletCashflowCreateApi
+from .crudModels.DeleteApiView import StockDeleteApi, HolderDeleteApi, PortfolioDeleteApi, HoldingDeleteApi, ActorCashflowDeleteApi, WalletCashflowDeleteApi
+from .crudModels.UpdateAPIView import HolderUpdateApi, StockUpdateApi, PortfolioUpdateApi, HoldingUpdateApi, ActorCashflowUpdateApi, WalletCashflowUpdateApi
 
-from .ListApi import HolderListApi, PortfolioListApi, StockListAPI,ActorCashflowListApi,HoldingListApi, WalletCashflowListApi
+from .crudModels.ReadApiView import ActorCashflowReadApiView, HolderReadApiView, HoldingReadApiView, PortfolioReadApiView, StockReadApiView, WalletCashflowReadApiView
 
 app_name = 'dashboard'
 
@@ -17,12 +17,12 @@ urlpatterns = [
     #path('addTransaction/', views.addTransaction, name='addTransaction'),
     #path('addhold/', views.addhold, name='addhold'),
     #read
-    path('api/stocks/', StockListAPI.as_view(), name='stock-list-api'),
-    path('api/actorcashflows/', ActorCashflowListApi.as_view(), name='stock-list-api'),
-    path('api/holding/', HoldingListApi.as_view(), name='stock-list-api'),
-    path('api/holding/', PortfolioListApi.as_view(), name='stock-list-api'),
-    path('api/holder/', HolderListApi.as_view(), name='stock-list-api'),
-    path('api/holder/', WalletCashflowListApi.as_view(), name='stock-list-api'),
+    path('api/stocks/', StockReadApiView.as_view(), name='stock-list-api'),
+    path('api/actorcashflows/', ActorCashflowReadApiView.as_view(), name='stock-list-api'),
+    path('api/holding/', HoldingReadApiView.as_view(), name='stock-list-api'),
+    path('api/portfolio/', PortfolioReadApiView.as_view(), name='stock-list-api'),
+    path('api/holder/', HolderReadApiView.as_view(), name='stock-list-api'),
+    path('api/walletcashflows/', WalletCashflowReadApiView.as_view(), name='stock-list-api'),
     ##Create
     path('api/holder/create/', HolderCreateApi.as_view(), name='holder-create-api'),
     path('api/actorcashflow/create/', ActorCashflowCreateApi.as_view(), name='holder-create-api'),
